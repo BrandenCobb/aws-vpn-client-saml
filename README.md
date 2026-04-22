@@ -259,7 +259,9 @@ kubectl port-forward pod/<pod-name> 35001:35001
 
 ## Credits
 
-Based on [aws-vpn-client](https://github.com/aws-vpn-client/aws-vpn-client) by [samm-git](https://github.com/samm-git).
+Based on:
+- [aws-vpn-client](https://github.com/aws-vpn-client/aws-vpn-client) by [samm-git](https://github.com/samm-git) — OpenVPN patches for AWS Client VPN
+- [aws-vpn-client-docker](https://github.com/rdvencioneck/aws-vpn-client-docker) by [rdvencioneck](https://github.com/rdvencioneck) — Docker implementation reference
 
 ## License
 
