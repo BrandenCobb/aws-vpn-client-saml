@@ -1,5 +1,9 @@
 # AWS VPN Client SAML (Docker/Kubernetes)
 
+[![Build Status](https://github.com/BrandenCobb/aws-vpn-client-saml/actions/workflows/docker-build.yml/badge.svg)](https://github.com/BrandenCobb/aws-vpn-client-saml/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/brandencobb/aws-vpn-client-saml)](https://hub.docker.com/r/brandencobb/aws-vpn-client-saml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Containerized AWS Client VPN with SAML authentication support for Kubernetes deployments.
 
 ## Overview
