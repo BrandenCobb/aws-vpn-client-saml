@@ -11,7 +11,7 @@
 
 **Do not open a public issue for security vulnerabilities.**
 
-Instead, email: **branden@example.com** (or your preferred contact)
+Instead, email: **brandencobb@gmail.com**
 
 Include:
 - Description of the vulnerability
