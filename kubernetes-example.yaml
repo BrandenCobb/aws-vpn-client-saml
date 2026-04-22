@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vpn-config
+  namespace: default  # ⚠️ Change to your namespace
+data:
+  vpn.conf: |
+    # ⚠️ Paste your AWS Client VPN .ovpn file contents here
+    #
+    # Example:
+    # client
+    # dev tun
+    # proto udp
+    # remote cvpn-endpoint-abc123.prod.clientvpn.us-west-2.amazonaws.com 443
+    # remote-random-hostname
+    # resolv-retry infinite
+    # nobind
+    # persist-key
+    # persist-tun
+    # remote-cert-tls server
+    # cipher AES-256-GCM
+    # verb 3
+    # <ca>
+    # ... certificate content ...
+    # </ca>
+    # <cert>
+    # ... certificate content ...
+    # </cert>
+    # <key>
+    # ... key content ...
+    # </key>
+    # auth-federate
+    # auth-retry interact
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vpn-saml
+  namespace: default  # ⚠️ Change to your namespace
+spec:
+  selector:
+    app: app-with-vpn
+  ports:
+  - port: 35001
+    targetPort: 35001
+    name: saml
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-with-vpn
+  namespace: default  # ⚠️ Change to your namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-with-vpn
+  template:
+    metadata:
+      labels:
+        app: app-with-vpn
+    spec:
+      containers:
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      # Your application container (example)
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: app
+        image: nginx:latest  # ⚠️ Replace with your app image
+        ports:
+        - containerPort: 80
+      
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      # VPN sidecar
+      # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      - name: vpn
+        image: docker.io/yourusername/aws-vpn-client-saml:latest  # ⚠️ Change registry
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+        volumeMounts:
+        - name: vpn-config
+          mountPath: /vpn.conf
+          subPath: vpn.conf
+        ports:
+        - containerPort: 35001
+          name: saml
+      
+      volumes:
+      - name: vpn-config
+        configMap:
+          name: vpn-config

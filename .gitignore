@@ -1,0 +1,22 @@
+# Binaries
+server
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docker
+*.log
+
+# Secrets (just in case)
+*.ovpn
+vpn.conf
+saml-response.txt
+
+# Build artifacts
+*.tar.gz
+*.zip
