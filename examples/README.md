@@ -20,10 +20,6 @@ Features:
 - PodDisruptionBudget
 - Network policies
 
-### Multi-Pod Setup (Coming Soon)
-
-Use a DaemonSet or shared VPN pod to route traffic from multiple applications.
-
 ---
 
 For more details, see the main [README](../README.md).
