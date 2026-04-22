@@ -71,7 +71,7 @@ This container:
 
 ```bash
 # Set your registry
-export REGISTRY=docker.io/yourusername
+export REGISTRY=docker.io/brandencobb
 
 # Build and push
 chmod +x build.sh
@@ -124,7 +124,7 @@ spec:
         
       # VPN sidecar
       - name: vpn
-        image: docker.io/yourusername/aws-vpn-client-saml:latest
+        image: docker.io/brandencobb/aws-vpn-client-saml:latest
         securityContext:
           capabilities:
             add:

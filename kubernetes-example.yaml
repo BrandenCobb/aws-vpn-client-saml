@@ -75,7 +75,7 @@ spec:
       # VPN sidecar
       # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       - name: vpn
-        image: docker.io/yourusername/aws-vpn-client-saml:latest  # ⚠️ Change registry
+        image: docker.io/brandencobb/aws-vpn-client-saml:latest
         securityContext:
           capabilities:
             add:

@@ -4,7 +4,7 @@ set -e
 
 IMAGE_NAME="aws-vpn-client-saml"
 TAG="latest"
-REGISTRY="${REGISTRY:-docker.io/yourusername}"  # ⚠️ Change to your registry
+REGISTRY="${REGISTRY:-docker.io/brandencobb}"
 
 echo "Building AWS VPN Client Docker image..."
 docker build -t ${REGISTRY}/${IMAGE_NAME}:${TAG} .
